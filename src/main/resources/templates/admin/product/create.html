@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/shared/layout::dynamic(~{::title},~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title th:fragment="title">Sản phẩm</title>
+</head>
+<body id="page-top">
+
+<div th:fragment="main">
+    <h1 class="h3 mb-2 text-gray-800"><strong>Quản lý sản phẩm</strong></h1>
+    <div class="card">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img th:if="${item.image}" th:src="@{|/assets/img/All/${item.image}|}" width="100%" class="img-fluid rounded-start" alt="...">
+                </div>
+                <input type="hidden" ng-model="form.headimage">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <form action="/admin/createPr" method="post" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4"><strong>Id</strong></label>
+                                    <input type="text" class="form-control" id="inputEmail4" th:field="${item.id}" readonly placeholder="Auto Number">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4"><strong>Name</strong></label>
+                                    <input ng-model="form.name" type="text" th:field="${item.name}" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <!-- Các trường khác ở đây -->
+
+                            <button class="btn btn-primary"><strong>Create</strong></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
